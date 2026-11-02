@@ -1,32 +1,26 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const morgan = require('morgan')
-const cors = require('cors');
-const connectDB = require('./src/config/db');
-const studentRouter = require('./src/routes/student.routes');
 
-
-
+// 1. Load environment variables FIRST
 dotenv.config();
+
+// 2. Require database config AFTER loading env vars
+const connectDB = require('./src/config/db');
+const studentRoutes = require('./src/routes/student.routes');
 
 const app = express();
 
+// Connect to MongoDB
+connectDB();
 
-app.use(cors());
+// Middleware
 app.use(express.json());
-app.use(morgan('dev'));
 
-//Routes
-app.get('/', (req, res)=> {
-    res.send('Welcome To My Home Page')
-});
+// Routes
+app.use('/api/students', studentRoutes);
 
-app.use('/api/students', studentRouter);
+const PORT = process.env.PORT || 5000;
 
-const PORT = process.env.PORT || 3000;
-
-
-app.listen(PORT, () =>{
-     connectDB();
-     console.log(`🚀 Server running on http://localhost:${PORT}`)
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
