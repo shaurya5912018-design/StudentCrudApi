@@ -4,7 +4,7 @@ const studentSchema = new mongoose.Schema(
     {
         name: {
             type: String,
-            required: [true, 'Please provide a student name'],
+            required: [true, 'Please provide a name'],
         },
         rollNumber: {
             type: String,

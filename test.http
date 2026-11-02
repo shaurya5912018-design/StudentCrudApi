@@ -1,9 +1,13 @@
+### Create a new student
 POST http://localhost:5000/api/students
 Content-Type: application/json
 
 {
   "name": "Shaurya Adhikari",
-  "email": "shaurya@example.com",
-  "age": 20,
-  "course": "Computer Science"
+  "rollNumber": "CS101",
+  "department": "Computer Science",
+  "email": "shaurya@example.com"
 }
+
+### Get all students
+GET http://localhost:5000/api/students

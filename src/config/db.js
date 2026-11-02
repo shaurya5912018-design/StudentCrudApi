@@ -2,14 +2,18 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
- dotenv.config();
+dotenv.config();
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URL);
+    const mongoUri = process.env.MONGO_URI || process.env.MONGO_URL;
+    if (!mongoUri) {
+      throw new Error('Neither MONGO_URI nor MONGO_URL is defined in environment variables');
+    }
+    await mongoose.connect(mongoUri);
     console.log('✅ MongoDB is connected SUCCESSFULLY!');
   } catch (err) {
-    console.error('❌ MongoDB connection failed', err.message);
+    console.error('❌ MongoDB connection failed:', err.message);
   }
 };
 
