@@ -3,10 +3,10 @@ POST http://localhost:5000/api/students
 Content-Type: application/json
 
 {
-  "name": "Shaurya Adhikari",
-  "rollNumber": "CS101",
-  "department": "Computer Science",
-  "email": "shaurya@example.com"
+    "name": "Shaurya Adhikari",
+    "rollNumber": "CS101",
+    "department": "Computer Science",
+    "email": "shaurya@example.com"
 }
 
 ### Get all students
